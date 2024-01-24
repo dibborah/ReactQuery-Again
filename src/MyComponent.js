@@ -78,3 +78,23 @@ export default MyComponent;
 // 4. Manual Query Refetching => Manually fetch data
 // 5. Filter Queries
 // 6. Resetting Queries
+
+
+// Stale => Meaning unFresh
+// stateTime => Time till the data will remain fresh
+// Till that time no refetching or api hit will take place but data will be taken from the cache as that data will be considered fresh
+
+// By default after a data is fetched it is considered stale or unfresh so at the very moment refetching of data happens
+// since bydefault the stateTime is taken as Zero(0)
+
+// cacheTime : Duration at which cache data(inactive queries) is removed (when it is considered as stale)
+// byDefault cacheTime is 5minutes
+// Meaning every after 5min cache data or inactive queries is considered stale and so is removed.
+
+// StateTime vs CacheTime 
+
+// StateTime => Query is considered stale so refetched
+// CacheTime => Cache is considered stale so removed// empty cache
+
+
+

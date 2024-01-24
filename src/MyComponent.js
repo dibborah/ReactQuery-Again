@@ -32,18 +32,19 @@ const MyComponent = () => {
 
   // data , error , status && isLoading, isError, isSuccess (T-6)
 
-  const { data, isLoading, error } = useQuery({// Setting stateTime and cacheTime INTERNALLY
+  const { data, isLoading, error, refetch } = useQuery({// Setting stateTime and cacheTime INTERNALLY
     queryKey: ["todos"],
     queryFn: fetchTodos,
     staleTime: 10 * (60 * 1000),// 5 minutes
     cacheTime: 15 * (60 * 1000),// 10 minutes
+    enabled: false// Bydefault api call comes true// Now setting it to false
   });
 
   // const { data , isLoading, error } = useQuery(queryKey, fetchTodos);
 
   if (isLoading) {
     // isLoading hold a boolean value
-    return <div>...Loading</div>;
+    return <button onClick={()=> refetch()}>Some Button</button>;
   }
 
   if (error) {

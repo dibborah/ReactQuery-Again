@@ -10,6 +10,7 @@ const queryClient = new QueryClient({
     queries: {
       staleTime: 5 * (60 * 1000),
       cacheTime: 10 * (60 * 1000),
+      enabled: false // Bydefault api calls are true// Now setting it to false
     },
   },
 });

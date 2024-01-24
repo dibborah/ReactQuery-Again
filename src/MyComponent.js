@@ -32,10 +32,11 @@ const MyComponent = () => {
 
   // data , error , status && isLoading, isError, isSuccess (T-6)
 
-  const { data, isLoading, error } = useQuery({
+  const { data, isLoading, error } = useQuery({// Setting stateTime and cacheTime INTERNALLY
     queryKey: ["todos"],
     queryFn: fetchTodos,
-    staleTime: 6000,
+    staleTime: 10 * (60 * 1000),// 5 minutes
+    cacheTime: 15 * (60 * 1000),// 10 minutes
   });
 
   // const { data , isLoading, error } = useQuery(queryKey, fetchTodos);

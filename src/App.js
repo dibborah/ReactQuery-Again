@@ -2,14 +2,24 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import MyComponent from "./MyComponent";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
-const queryClient = new QueryClient();
+// const queryClient = new QueryClient();// Earlier when not setting staleTime and cacheTime GLOBALLY
+
+const queryClient = new QueryClient({
+  // Setting staleTime and cacheTime GLOBALLY so passing in QueryClient as an object
+  defaultOptions: {
+    queries: {
+      staleTime: 5 * (60 * 1000),
+      cacheTime: 10 * (60 * 1000),
+    },
+  },
+});
 
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <MyComponent />
       <ReactQueryDevtools initialIsOpen={true} />
-     {/* Bydefault initialIsOpen false hota hain // Usse true karna padta hain */}
+      {/* Bydefault initialIsOpen false hota hain // Usse true karna padta hain */}
     </QueryClientProvider>
   );
 };

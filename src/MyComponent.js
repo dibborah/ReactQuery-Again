@@ -94,7 +94,7 @@ export default MyComponent;
 // StateTime vs CacheTime 
 
 // StateTime => Query is considered stale so refetched
-// CacheTime => Cache is considered stale so removed// empty cache
+// CacheTime => Cache is considered stale so removed // empty cache
 
 
 

@@ -1,6 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 
 const MyComponent = () => {
+  const [state, setState] = useState(0);
+
+  const handleAdd = () => {
+    setState((prevState) => prevState + 1);
+  };
+  const handleMinus = () => {
+    setState((prevState) => prevState - 1);
+  };
+
   // Define a unique key for the query
   const queryKey = "todos"; // It should be unique// It acts as an unique identifier for the query
   // It helps React Query manage the cache and refetching the  specific query
@@ -9,21 +19,29 @@ const MyComponent = () => {
   const fetchTodos = async () => {
     const response = await fetch("https://jsonplaceholder.typicode.com/posts");
     // We are using here fetch to get data from API endpoint
-    // You may also use (Axios, graphQL, etc.) any method 
+    // You may also use (Axios, graphQL, etc.) any method
     const data = response.json();
     return data;
   };
 
   // use the useQuery hook to fetch data and manage the state
 
+  // Other inbuilt parameter of useQuery => isError, isSuccess, status
+
+  // Total till now we got 6 in-built parameter of useQuery
+
+  // data , error , status && isLoading, isError, isSuccess (T-6)
+
   const { data, isLoading, error } = useQuery({
     queryKey: ["todos"],
     queryFn: fetchTodos,
+    staleTime: 6000,
   });
 
   // const { data , isLoading, error } = useQuery(queryKey, fetchTodos);
 
-  if (isLoading) {// isLoading hold a boolean value
+  if (isLoading) {
+    // isLoading hold a boolean value
     return <div>...Loading</div>;
   }
 
@@ -33,6 +51,9 @@ const MyComponent = () => {
 
   return (
     <div>
+      <button onClick={handleMinus}>-</button>
+      {state}
+      <button onClick={handleAdd}>+</button>
       <ul>
         {data.map((todo) => {
           return <li key={todo.id}>{todo.title}</li>;
@@ -43,3 +64,17 @@ const MyComponent = () => {
 };
 
 export default MyComponent;
+
+// React Query Dev Tools
+// 1. Browser Extension
+// 2. Provides helpful interface => Inspecting & Debugging Query
+// 3. Status of queries, view query details, inspect the cache, etc
+
+// Features of React Query
+
+// 1. Inspect Queries
+// 2. Query Details
+// 3. Cache Exploration
+// 4. Manual Query Refetching => Manually fetch data
+// 5. Filter Queries
+// 6. Resetting Queries

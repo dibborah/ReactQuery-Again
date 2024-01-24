@@ -1,5 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import MyComponent from "./MyComponent";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const queryClient = new QueryClient();
 
@@ -7,6 +8,8 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <MyComponent />
+      <ReactQueryDevtools initialIsOpen={true} />
+     {/* Bydefault initialIsOpen false hota hain // Usse true karna padta hain */}
     </QueryClientProvider>
   );
 };

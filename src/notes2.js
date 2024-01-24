@@ -1,4 +1,5 @@
 // set Refetch Defaults
+
 // QueryClient.defaultOptions = {
 //     queries: {
 //         refetchOnWindowFocus: false, // Disable refetching when the window regains focus
